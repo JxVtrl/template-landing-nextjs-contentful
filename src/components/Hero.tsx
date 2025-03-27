@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Hero as HeroType } from '../types/contentful';
 
 interface Props {
@@ -5,23 +6,18 @@ interface Props {
 }
 
 export const Hero = ({ hero }: Props) => {
-console.log('hero', hero)
+  console.log('hero', hero)
 
-  if(!hero) return null;
+  if (!hero) return null;
 
   const { title, subtitle, ctaText, backgroundImage } = hero;
-  
+
 
   return (
-    <div 
+    <div
       className="relative h-screen flex items-center justify-center"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50" />
+      <Image src={backgroundImage} alt={title} layout="fill" objectFit="cover" className="opacity-50" />
       <div className="relative z-10 text-center text-white px-4">
         <h1 className="text-5xl md:text-6xl font-bold mb-4">{title}</h1>
         <p className="text-xl md:text-2xl mb-8">{subtitle}</p>

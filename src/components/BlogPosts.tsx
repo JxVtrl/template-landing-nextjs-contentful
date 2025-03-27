@@ -14,8 +14,8 @@ export const BlogPosts = ({ posts }: Props) => {
           {posts.map((post, index) => (
             <article key={index} className="bg-white rounded-lg overflow-hidden shadow-lg">
               <img 
-                src={post.featuredImage.url} 
-                alt={post.featuredImage.title}
+                src={post.featuredImage} 
+                alt={post.title}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
