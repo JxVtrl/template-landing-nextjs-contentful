@@ -1,3 +1,5 @@
+import { Document } from "@contentful/rich-text-types";
+
 export interface Metadata {
   tags: string[];
   concepts: string[];
@@ -77,7 +79,7 @@ export interface BlogPost {
   id: number;
   title: string;
   slug: string;
-  content: any; // Rich Text content
+  content: Document; // Rich Text content
   featuredImage: string;
   excerpt: string;
   author: string;
@@ -112,7 +114,7 @@ export interface BlogPostResponse {
   fields: {
     title: string;
     slug: string;
-    content: any;
+    content: Document;
     featuredImage: ImageAsset;
     excerpt: string;
     author: string;

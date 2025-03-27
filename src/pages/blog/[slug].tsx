@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getAllBlogPosts, getBlogPostBySlug } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import type { BlogPost } from '../../types/contentful';
-
+import Image from 'next/image';
 interface Props {
   post: BlogPost | null;
 }
@@ -13,7 +13,7 @@ export default function BlogPost({ post }: Props) {
   if (!post) {
     return (
       <main className="container mx-auto px-4 py-12">
-        <Link 
+        <Link
           href="/"
           className="text-blue-600 hover:text-blue-800 mb-8 inline-block"
         >
@@ -35,7 +35,7 @@ export default function BlogPost({ post }: Props) {
       </Head>
 
       <main className="container mx-auto px-4 py-12">
-        <Link 
+        <Link
           href="/"
           className="text-blue-600 hover:text-blue-800 mb-8 inline-block"
         >
@@ -43,14 +43,17 @@ export default function BlogPost({ post }: Props) {
         </Link>
 
         <article className="max-w-3xl mx-auto">
-          <img 
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-64 object-cover rounded-lg mb-8"
-          />
-          
+          <div className="relative h-64 rounded-lg mb-8">
+            <Image
+              src={post.featuredImage}
+              alt={post.title}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+
           <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          
+
           <div className="flex items-center text-gray-600 mb-8">
             <span>{post.author}</span>
             <span className="mx-2">•</span>
@@ -69,7 +72,7 @@ export default function BlogPost({ post }: Props) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const posts = await getAllBlogPosts();
-    
+
     const paths = posts.map((post) => ({
       params: { slug: post.slug },
     }));

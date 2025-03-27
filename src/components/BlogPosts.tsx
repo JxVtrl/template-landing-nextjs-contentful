@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BlogPost as BlogPostType } from '../types/contentful';
+import Image from 'next/image';
 
 interface Props {
   posts: BlogPostType[];
@@ -19,10 +20,11 @@ export const BlogPosts = ({ posts }: Props) => {
               "
             >
               <div className="relative h-48">
-                <img 
+                <Image 
                   src={post.featuredImage} 
                   alt={post.title}
                   className="w-full h-full object-cover"
+                  layout="fill"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
